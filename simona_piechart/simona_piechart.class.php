@@ -70,6 +70,10 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
     } else {
       $out['is3d'] = false;
     }
+    $width = ($this->Tag->width() === false) ? "460" : $this->Tag->width();
+    $out['width'] = $width;
+    $height = ($this->Tag->height() === false) ? "320" : $this->Tag->height();
+    $out['height'] = $height;
     if (isset($post[$id. '_data']) && trim($post[$id. '_data']) !== '') {
       $out['data'] = $post[$id. '_data'];
     } else {
@@ -98,6 +102,8 @@ CMSPieChart.charts.push({
   'chart_id':'simona_piechart_{$raw['chart_id']}',
   'title':'{$raw['title']}',
   'data':'{$raw['data']}',
+  'width':'{$raw['width']}',
+  'height':'{$raw['height']}',
   'is3d':{$is3d},
 });
 EOT;
