@@ -14,7 +14,7 @@ Once installed, the fieldtype can be used in a template by setting the `type` at
 
 `<perch:content id="piechart" type="simona_piechart" label="Pie Chart" title="true" />`
 
-**TODO:** An example basic template is supplied in the `templates` folder.
+An example basic template is supplied in the `templates` folder.
 
 ### Attributes
 
