@@ -16,13 +16,13 @@ Once installed, the fieldtype can be used in a template by setting the `type` at
 
 **TODO:** An example basic template is supplied in the `templates` folder.
 
-### TODO: Attributes
+### Attributes
 
 **width**
-Set the width attribute to control the width of the output chart (default: `460px`). Example: `width="300px"`.
+Set the width attribute to control the width of the output chart (default: `460`). Example: `width="300"`.
 
 **height**
-Set the height attribute to control the height of the output chart (default: `320px`). Example: `height="300px"`.
+Set the height attribute to control the height of the output chart (default: `320`). Example: `height="300"`.
 
 ## Credits
 
