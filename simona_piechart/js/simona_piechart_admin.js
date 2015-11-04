@@ -14,6 +14,8 @@ function initCharts() {
     pc.setData(data);
     pc.title = $(this).attr('data-title');
     pc.is3d = $(this).attr('data-is3d');
+    // pc.width = $(this).attr('data-width');
+    // pc.height = $(this).attr('data-height');
     pc.drawChart(pc.hot);
 
     //update chart on title change
@@ -39,6 +41,8 @@ function PieChart(id) {
   this.hot = 'undefined';
   this.chart = 'undefined';
   this.is3d = false;
+  this.width = 460;
+  this.height = 320;
 
   this.drawChart = function(hot) {
     var data = new google.visualization.DataTable();
@@ -58,8 +62,8 @@ function PieChart(id) {
     data.addRows(chartData);
     var options = {
       'title': this.title,
-      'width': 460,
-      'height': 320,
+      'width': this.width,
+      'height': this.height,
       'colors': colors,
       'is3D': this.is3d,
     };
