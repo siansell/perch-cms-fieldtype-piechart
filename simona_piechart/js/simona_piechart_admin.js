@@ -110,7 +110,7 @@ function PieChart(id) {
         {data: 'color'}
       ],
       columnSorting: true,
-      contextMenu: true,
+      contextMenu: ['row_above', 'row_below', 'remove_row'],
       afterChange: function(change, source) {
         parent.updateData(this);
         parent.drawChart(this);
