@@ -45,8 +45,8 @@ CMSPieChart.UI = function()
         // Set chart options
         var options = {
           'title':chart['title'],
-          'width':400,
-          'height':300,
+          'width':chart['width'],
+          'height':chart['height'],
           'colors': colors,
           'is3D':chart['is3d']
         };
