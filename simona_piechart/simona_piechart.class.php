@@ -67,6 +67,8 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
     $out['_title'] = $out['title'];
     if (isset($post[$id. '_is3d']) && trim($post[$id. '_is3d']) !== '') {
       $out['is3d'] = $post[$id. '_is3d'];
+    } else {
+      $out['is3d'] = false;
     }
     if (isset($post[$id. '_data']) && trim($post[$id. '_data']) !== '') {
       $out['data'] = $post[$id. '_data'];
@@ -81,7 +83,7 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
 
     PerchUtil::debug($raw);
 
-    $html = '<div id="simona_piechart_'. $raw['chart_id']. '"></div>';
+    $html = '<div id="simona_piechart_'. $raw['chart_id']. '">Loading chart...</div>';
 
     $is3d = ($raw['is3d']) ? 'true' : 'false';
 
