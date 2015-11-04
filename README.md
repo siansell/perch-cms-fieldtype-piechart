@@ -27,6 +27,7 @@ Set the height attribute to control the height of the output chart (default: `32
 ## Credits
 
 * handsontable: http://handsontable.com/
+* Google Charts: https://developers.google.com/chart/?hl=en
 
 ## License
 
