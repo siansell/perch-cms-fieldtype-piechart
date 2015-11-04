@@ -48,7 +48,10 @@ CMSPieChart.UI = function()
           'width':chart['width'],
           'height':chart['height'],
           'colors': colors,
-          'is3D':chart['is3d']
+          'is3D':chart['is3d'],
+          // 'legend':{textStyle:{fontSize:'20'}},
+          // 'tooltip':{textStyle:{fontSize:'20'}},
+          // 'titleTextStyle':{fontSize:'20'},
         };
 
         // console.log(document.getElementById(chart.chart_id));

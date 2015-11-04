@@ -16,6 +16,8 @@ Once installed, the fieldtype can be used in a template by setting the `type` at
 
 An example basic template is supplied in the `templates` folder.
 
+Piechart data is editable within Perch.
+
 ### Attributes
 
 **width**
