@@ -16,7 +16,7 @@ Once installed, the fieldtype can be used in a template by setting the `type` at
 
 An example basic template is supplied in the `templates` folder.
 
-Piechart data is editable within Perch. The chartpreview should update in real time. To add and remove rows, right click and use the context menu.
+Piechart data is editable within Perch. The chart preview should update in real time. To add and remove rows, right click and use the context menu.
 
 ### Attributes
 
