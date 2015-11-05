@@ -15,6 +15,7 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
     $Perch->add_css($this->_handsontable_location. 'handsontable.full.min.css');
     $Perch->add_javascript('https://www.google.com/jsapi');
     $Perch->add_javascript($this->_handsontable_location. 'handsontable.full.min.js');
+    $Perch->add_javascript($this->_location. 'js/spin.min.js');
     $Perch->add_javascript($this->_location. 'js/simona_piechart_admin.js');
   }
 
@@ -26,6 +27,7 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
 
     $title = isset($details[$id]['title']) ? $this->Form->get($details[$id], 'title') : 'My Favourite Pie';
     $is3d = isset($details[$id]['is3d']) ? $this->Form->get($details[$id], 'is3d') : false;
+    $numberformat = isset($details[$id]['numberformat']) ? $this->Form->get($details[$id], 'numberformat') : false;
     $data = isset($details[$id]['data']) ? $this->Form->get($details[$id], 'data') : '[["Steak",7,"#e0440e"],["Kidney",12,"#e6693e"],["Mushrooms", 4, "#ec8f6e"]]';
     // PerchUtil::debug($data);
 
@@ -37,6 +39,10 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
     $s.=      $this->Form->label($id. '_is3d', 'Is 3D', '', true);
     $s.=      $this->Form->checkbox($id. '_is3d', true, $is3d);
     $s.= '  </div>';
+    // $s.= '  <div class="simona_piechart_row">';
+    // $s.=      $this->Form->label($id. '_numberformat', 'Percentages', '', true);
+    // $s.=      $this->Form->checkbox($id. '_numberformat', true, $numberformat);
+    // $s.= '  </div>';
     $s.= '  <div class="simona_piechart_row">';
     $s.=      $this->Form->label('simona_piechart_'. $id. '_data', 'Data', '', true);
     $s.= '    <div class="simona_hot">';
@@ -86,7 +92,7 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
 
     PerchUtil::debug($raw);
 
-    $html = '<div id="simona_piechart_'. $raw['chart_id']. '">Loading chart...</div>';
+    $html = '<div id="simona_piechart_'. $raw['chart_id']. '" style="min-height: 60px;"></div>';
 
     $is3d = ($raw['is3d']) ? 'true' : 'false';
 
@@ -114,7 +120,9 @@ EOT;
   }
 
   public function get_search_text($raw=false) {
-    return false;
+    if ($raw===false) $raw = $this->get_raw();
+    if (!PerchUtil::count($raw)) return false;
+    return $raw['_title'];
   }
 
   public function render_admin_listing($raw=false) {

@@ -1,8 +1,15 @@
 if (typeof jQuery == 'undefined') {
   document.write('<scr'+'ipt type="text\/javascript" src="/perch/core/assets/js/jquery-1.11.3.min.js"><'+'\/sc'+'ript>');
 }
-if (typeof google == 'undefined') {
+
+if (!googleloaded) {
   document.write('<scr'+'ipt type="text\/javascript" src="https://www.google.com/jsapi"><'+'\/sc'+'ript>');
+  var googleloaded = true;
+}
+
+if (!spinjsloaded) {
+  document.write('<scr'+'ipt type="text\/javascript" src="/perch/addons/fieldtypes/simona_piechart/js/spin.min.js"><'+'\/sc'+'ript>');
+  var spinjsloaded = true;
 }
 
 if (typeof CMSPieChart == 'undefined') {
@@ -13,26 +20,50 @@ CMSPieChart.UI = function()
 {
 
   var init  = function() {
-    // console.log('init');
+
     if (CMSPieChart.charts.length) {
+
+      $('div[id^="simona_piechart_"]').each(function(index) {
+        var opts = {
+          lines: 13 // The number of lines to draw
+        , length: 4 // The length of each line
+        , width: 6 // The line thickness
+        , radius: 10 // The radius of the inner circle
+        , scale: 1 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '30px' // Top position relative to parent
+        , left: '10%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'relative' // Element positioning
+        };
+        // console.log(this);
+        var spinner = new Spinner(opts).spin(this);
+        this.appendChild(spinner.el);
+      });
+
       var options = {packages: ['corechart'], callback : draw_charts};
       google.load('visualization', '1.0', options);
 
     }
+
   };
 
   function draw_charts() {
 
-    // console.log('draw_charts');
-
-    // setTimeout(function() { //wait for google to load as setonloadcallback not working?!
-
-      // console.log(google);
       var chart = {};
       for (i=0;i<CMSPieChart.charts.length;i++) {
 
         chart = CMSPieChart.charts[i];
-
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Item');
@@ -53,20 +84,13 @@ CMSPieChart.UI = function()
           'height':chart['height'],
           'colors': colors,
           'is3D':chart['is3d'],
-          // 'legend':{textStyle:{fontSize:'20'}},
-          // 'tooltip':{textStyle:{fontSize:'20'}},
-          // 'titleTextStyle':{fontSize:'20'},
         };
-
-        // console.log(document.getElementById(chart.chart_id));
 
         // Instantiate and draw our chart, passing in some options.
         var c = new google.visualization.PieChart(document.getElementById(chart.chart_id));
         c.draw(data, options);
 
       };
-
-    // }, 3000);
 
   };
 
@@ -77,8 +101,6 @@ CMSPieChart.UI = function()
 }();
 
 CMSPieChart.Loader = function(){
-
-  // console.log('CMSPieChart.Loader');
 
   var func = CMSPieChart.UI.init;
   var oldonload = window.onload;
