@@ -2,10 +2,6 @@
 class PerchFieldType_simona_piechart extends PerchAPI_FieldType
 {
 
-  /* Allowable tags:
-
-  */
-
   public $processed_output_is_markup = true;
 
   private $_location = "/perch/addons/fieldtypes/simona_piechart/";
@@ -35,7 +31,6 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
 
     $s = '<div class="simona_piechart">';
     $s.= '  <div class="simona_piechart_row">';
-    $s.=      $this->Form->label($id. '_title', 'Chart title', '', true);
     $s.=      $this->Form->text($id. '_title', $title);
     $s.= '  </div>';
     $s.= '  <div class="simona_piechart_row">';
@@ -44,11 +39,11 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
     $s.= '  </div>';
     $s.= '  <div class="simona_piechart_row">';
     $s.=      $this->Form->label('simona_piechart_'. $id. '_data', 'Data', '', true);
-    $s.= '  <div class="simona_hot">';
-    $s.= '    <div id="simona_piechart_data_'. $id. '"></div>';
+    $s.= '    <div class="simona_hot">';
+    $s.= '      <div id="simona_piechart_data_'. $id. '"></div>';
+    $s.= '    </div>';
     $s.= '  </div>';
-    $s.= '  </div>';
-    $s.= '  <div id="simona_piechart_chart_'. $id. '" data-title="'. $title. '" data-is3d="'. $is3d. '"></div>';
+    $s.= '    <div id="simona_piechart_chart_'. $id. '" data-title="'. $title. '" data-is3d="'. $is3d. '" class="simona_piechart_chart"></div>';
     $s.= '</div>';
     $s.= $this->Form->hidden($id. '_data',  $data);
     return $s;
