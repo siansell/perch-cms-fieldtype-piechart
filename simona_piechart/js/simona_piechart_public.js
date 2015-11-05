@@ -13,15 +13,19 @@ CMSPieChart.UI = function()
 {
 
   var init  = function() {
+    // console.log('init');
     if (CMSPieChart.charts.length) {
       var options = {packages: ['corechart'], callback : draw_charts};
       google.load('visualization', '1.0', options);
+
     }
   };
 
   function draw_charts() {
 
-    setTimeout(function() { //wait for google to load as setonloadcallback not working?!
+    // console.log('draw_charts');
+
+    // setTimeout(function() { //wait for google to load as setonloadcallback not working?!
 
       // console.log(google);
       var chart = {};
@@ -62,7 +66,7 @@ CMSPieChart.UI = function()
 
       };
 
-    }, 3000);
+    // }, 3000);
 
   };
 
@@ -73,6 +77,8 @@ CMSPieChart.UI = function()
 }();
 
 CMSPieChart.Loader = function(){
+
+  // console.log('CMSPieChart.Loader');
 
   var func = CMSPieChart.UI.init;
   var oldonload = window.onload;
