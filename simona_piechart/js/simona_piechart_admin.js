@@ -5,32 +5,46 @@ google.setOnLoadCallback(initCharts);
 
 var simona_piechart = [];
 
+
 function initCharts() {
+
 
   $('div[id^="simona_piechart_chart_"]').each(function(index) {
 
-    var pc = new PieChart(this.id);
-    simona_piechart.push(pc);
-    var data = $('#'+this.id.replace('simona_piechart_chart_', '')+'_data').val();
-    // console.log(data);
-    pc.setData(data);
-    pc.title = $(this).attr('data-title');
-    pc.is3d = $(this).attr('data-is3d');
-    // pc.width = $(this).attr('data-width');
-    // pc.height = $(this).attr('data-height');
-    pc.drawChart(pc.hot);
+    var current = this.id;
+    var result = $.grep(simona_piechart, function(e){
+      return e.id == current;
+    }); //does the piechart already exist
 
-    //update chart on title change
-    $('#'+this.id.replace('simona_piechart_chart_', '') + '_title').change(function() {
-      pc.title = this.value;
-      pc.drawChart(pc.hot);
-    });
+    if (result.length == 0) {
 
-    //update chart on is3d change
-    $('#'+this.id.replace('simona_piechart_chart_', '') + '_is3d').change(function() {
-      pc.is3d = ($(this).is(":checked")) ? true : false;
-      pc.drawChart(pc.hot);
-    });
+      var pc = new PieChart(this.id);
+
+      simona_piechart.push(pc);
+      var data = $('#'+this.id.replace('simona_piechart_chart_', '')+'_data').val();
+
+      // if (pc.hot == 'undefined') {
+        pc.setData(data);
+        pc.title = $(this).attr('data-title');
+        pc.is3d = $(this).attr('data-is3d');
+        // pc.width = $(this).attr('data-width');
+        // pc.height = $(this).attr('data-height');
+         pc.drawChart(pc.hot);
+      // }
+
+      //update chart on title change
+      $('#'+this.id.replace('simona_piechart_chart_', '') + '_title').change(function() {
+        pc.title = this.value;
+        pc.drawChart(pc.hot);
+      });
+
+      //update chart on is3d change
+      $('#'+this.id.replace('simona_piechart_chart_', '') + '_is3d').change(function() {
+        pc.is3d = ($(this).is(":checked")) ? true : false;
+        pc.drawChart(pc.hot);
+      });
+
+    }
 
   });
 
