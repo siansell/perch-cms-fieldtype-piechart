@@ -14,9 +14,9 @@ function initCharts() {
     var current = this.id;
     var result = $.grep(simona_piechart, function(e){
       return e.id == current;
-    }); //does the piechart already exist
+    });
 
-    if (result.length == 0) {
+    if (result.length == 0) {   //does the piechart already exist (blocks)
 
       var pc = new PieChart(this.id);
 
