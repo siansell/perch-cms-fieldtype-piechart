@@ -21,7 +21,7 @@ CMSPieChart.UI = function()
 
   function draw_charts() {
 
-    setTimeout(function() { //wait for google to load as setonloadcallback notg working?!
+    setTimeout(function() { //wait for google to load as setonloadcallback not working?!
 
       // console.log(google);
       var chart = {};
