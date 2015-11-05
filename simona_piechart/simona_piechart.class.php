@@ -56,6 +56,10 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
   }
 
   public function get_raw($post=false, $Item=false) {
+
+    // PerchUtil::debug($this->unique_id);
+    // PerchUtil::debug($this->required_id);
+
     $id = $this->Tag->id();
     $out = array();
     if (isset($post[$id. '_title']) && trim($post[$id. '_title']) !== '') {
@@ -79,7 +83,7 @@ class PerchFieldType_simona_piechart extends PerchAPI_FieldType
     } else {
       $out['data'] = '[]';
     }
-    $out['chart_id'] = $this->unique_id;
+    $out['chart_id'] = $this->unique_id. $this->required_id;
     return $out;
   }
 
