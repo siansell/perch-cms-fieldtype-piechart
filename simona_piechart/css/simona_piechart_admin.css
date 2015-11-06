@@ -11,7 +11,7 @@
   margin: 10px 0 0 230px;
 }
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 840px) {
   .simona_piechart_chart, .simona_hot {
     margin-left: 0;
   }
